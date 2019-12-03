@@ -3,6 +3,7 @@ import classes from './FullPost.module.css';
 
 class FullPost extends Component {
     render() {
+
         let post = <p>Please Select a Post!</p>
 
         post = (
