@@ -5,12 +5,11 @@ import Post from '../components/Post/Post';
 import NewPost from '../components/NewPost/NewPost';
 import FullPost from '../components/FullPost/FullPost';
 
-
 class Blog extends Component {
     state = {
         posts: [],
         selectedPostId: null,
-    }
+    };
 
     componentDidMount() {
         axios.get('https://jsonplaceholder.typicode.com/posts')
