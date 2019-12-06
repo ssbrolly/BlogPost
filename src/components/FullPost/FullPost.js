@@ -4,7 +4,8 @@ import axios from 'axios';
 
 class FullPost extends Component {
     state = {
-        loadedPost: null
+        loadedPost: null,
+        delete: null
     };
 
     componentDidUpdate() {
@@ -13,10 +14,12 @@ class FullPost extends Component {
                 axios.get('https://jsonplaceholder.typicode.com/posts/' + this.props.id)
                     .then(res => {
                         this.setState({ loadedPost: res.data })
+                        console.log('updated')
                     });
             };
         };
     };
+
 
     deletePostHandler = () => {
         axios.delete('https://jsonplaceholder.typicode.com/posts/' + this.props.id)
@@ -26,11 +29,13 @@ class FullPost extends Component {
     };
 
     render() {
-        let post = <p style={{ textAlign: 'center' }}>Please Select a Post!</p>
+        let post; //<p style={{ textAlign: 'center' }}>Please Select a Post!</p>
         if (this.props.id) {
             post = <p style={{ textAlign: 'center' }}>Loading...</p>
         }
-        if (this.state.loadedPost) {
+        if (!this.state.loadedPost) {
+            post = <p style={{ textAlign: 'center' }}>Please Select a Post!</p>
+        } else if (this.state.loadedPost) {
             post = (
                 <div className={classes.FullPost}>
                     <h1>{this.state.loadedPost.title}</h1>
