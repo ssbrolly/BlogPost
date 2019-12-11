@@ -14,7 +14,6 @@ class FullPost extends Component {
                 axios.get('https://jsonplaceholder.typicode.com/posts/' + this.props.id)
                     .then(res => {
                         this.setState({ loadedPost: res.data })
-                        console.log('updated')
                     });
             };
         };
@@ -24,7 +23,6 @@ class FullPost extends Component {
     deletePostHandler = () => {
         axios.delete('https://jsonplaceholder.typicode.com/posts/' + this.props.id)
             .then(res => {
-                console.log(res);
             });
     };
 

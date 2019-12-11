@@ -13,7 +13,7 @@ class Blog extends Component {
     };
 
     componentDidMount() {
-        axios.get('https://jsonplaceholder.typicode.com/posts')
+        axios.get('https://jsonplaceholder.typicode.com/postss')
             .then(res => {
                 const posts = res.data.splice(0, 4)
                 const updatedPosts = posts.map(post => {
@@ -23,7 +23,6 @@ class Blog extends Component {
                     };
                 });
                 this.setState({ posts: updatedPosts });
-                // console.log(response);
             }).catch(error => {
                 this.setState({ error: true });
             });
@@ -64,6 +63,9 @@ class Blog extends Component {
 };
 
 export default Blog;
+
+
+
 
 
 
