@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import axios from '../../axios';
 import classes from './Blog.module.css'
-import Post from '../components/Post/Post';
-import NewPost from '../components/NewPost/NewPost';
-import FullPost from '../components/FullPost/FullPost';
+import Post from '../../components/Post/Post';
+import NewPost from '../../components/NewPost/NewPost';
+import FullPost from '../../components/FullPost/FullPost';
 
 class Blog extends Component {
     state = {
@@ -13,7 +13,7 @@ class Blog extends Component {
     };
 
     componentDidMount() {
-        axios.get('https://jsonplaceholder.typicode.com/postss')
+        axios.get('/posts')
             .then(res => {
                 const posts = res.data.splice(0, 4)
                 const updatedPosts = posts.map(post => {
