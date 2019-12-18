@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import classes from './Blog.module.css'
 import Posts from '../Blog/Posts/Posts';
+import { Route, Link } from 'react-router-dom';
+import NewPost from './NewPost/NewPost';
 
 class Blog extends Component {
     render() {
@@ -9,12 +11,18 @@ class Blog extends Component {
                 <header className={classes.Blog}>
                     <nav>
                         <ul>
-                            <li><a href="/">Home</a></li>
-                            <li><a href="/new-post">Home Post</a></li>
+                            <li><Link to="/">Home</Link></li>
+                            <li><Link to={{
+                                pathname: '/new-post',
+                                hash: '#submit',
+                                search: '?quick-submit=true'
+                            }}>New Post</Link></li>
                         </ul>
                     </nav>
                 </header>
-                <Posts />
+                {/* <Route path="/" exact render={() => (<Posts />)} /> */}
+                <Route path="/" exact component={Posts} />
+                <Route path="/new-post" component={NewPost} />
             </div >
         );
     };
