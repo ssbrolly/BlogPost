@@ -1,63 +1,21 @@
 import React, { Component } from 'react';
-import axios from '../../axios';
 import classes from './Blog.module.css'
-import Post from '../../components/Post/Post';
-import NewPost from '../../components/NewPost/NewPost';
-import FullPost from '../../components/FullPost/FullPost';
+import Posts from '../Blog/Posts/Posts';
 
 class Blog extends Component {
-    state = {
-        posts: [],
-        selectedPostId: null,
-        error: false
-    };
-
-    componentDidMount() {
-        axios.get('/posts')
-            .then(res => {
-                const posts = res.data.splice(0, 4)
-                const updatedPosts = posts.map(post => {
-                    return {
-                        ...post,
-                        author: 'Max'
-                    };
-                });
-                this.setState({ posts: updatedPosts });
-            }).catch(error => {
-                this.setState({ error: true });
-            });
-    };
-
-    postSelectedHandler = (id) => {
-        this.setState({ selectedPostId: id });
-    };
-
     render() {
-        let posts = <p style={{ textAlign: 'center' }}>Somthing Went Wrong</p>
-
-        if (!this.state.error) {
-            posts = this.state.posts.map(post => {
-                return <Post
-                    key={post.id}
-                    title={post.title}
-                    author={post.author}
-                    clicked={() => this.postSelectedHandler(post.id)}
-                />
-            });
-        }
-
         return (
             <div>
-                <section className={classes.Blog}>
-                    {posts}
-                </section>
-                <section>
-                    <FullPost id={this.state.selectedPostId} />
-                </section>
-                <section>
-                    <NewPost />
-                </section>
-            </div>
+                <header className={classes.Blog}>
+                    <nav>
+                        <ul>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/new-post">Home Post</a></li>
+                        </ul>
+                    </nav>
+                </header>
+                <Posts />
+            </div >
         );
     };
 };
