@@ -39,7 +39,6 @@ class Posts extends Component {
                 return (
                     <Link to={'/' + post.id} key={post.id}>
                         <Post
-
                             title={post.title}
                             author={post.author}
                             clicked={() => this.postSelectedHandler(post.id)}
@@ -58,3 +57,6 @@ class Posts extends Component {
 };
 
 export default Posts;
+
+
+
